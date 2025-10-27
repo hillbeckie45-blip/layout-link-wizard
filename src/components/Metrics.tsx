@@ -1,20 +1,35 @@
 const Metrics = () => {
-  const stats = [
-    { label: "Success Rate", value: "94.42%", verified: true },
-    { label: "Total Revenue Generated", value: "$2B+", verified: true },
-    { label: "Average ROAS", value: "2100%", verified: true },
-    { label: "Client Retention", value: "89.2%", verified: true }
-  ];
-
-  const detailedMetrics = [
-    { label: "Campaign Success Rate", value: "97.8%" },
-    { label: "Goal Achievement", value: "94.5%" },
-    { label: "ROI Positive Rate", value: "96.1%" },
-    { label: "Ad Spend Managed", value: "$201M" }
-  ];
-
-  return (
-    <section className="py-24 relative overflow-hidden">
+  const stats = [{
+    label: "Success Rate",
+    value: "94.42%",
+    verified: true
+  }, {
+    label: "Total Revenue Generated",
+    value: "$2B+",
+    verified: true
+  }, {
+    label: "Average ROAS",
+    value: "2100%",
+    verified: true
+  }, {
+    label: "Client Retention",
+    value: "89.2%",
+    verified: true
+  }];
+  const detailedMetrics = [{
+    label: "Campaign Success Rate",
+    value: "97.8%"
+  }, {
+    label: "Goal Achievement",
+    value: "94.5%"
+  }, {
+    label: "ROI Positive Rate",
+    value: "96.1%"
+  }, {
+    label: "Ad Spend Managed",
+    value: "$201M"
+  }];
+  return <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -27,23 +42,16 @@ const Metrics = () => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-16">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-lg bg-card border border-border text-center hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)]"
-            >
+          {stats.map((stat, index) => <div key={index} className="p-8 bg-card border border-border text-center hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)] rounded-lg">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
                 {stat.value}
               </div>
               <div className="text-sm text-muted-foreground mb-2">{stat.label}</div>
-              {stat.verified && (
-                <div className="flex items-center justify-center gap-1">
+              {stat.verified && <div className="flex items-center justify-center gap-1">
                   <span className="text-xs text-primary">✓</span>
                   <span className="text-xs text-muted-foreground">Verified</span>
-                </div>
-              )}
-            </div>
-          ))}
+                </div>}
+            </div>)}
         </div>
 
         <div className="bg-card border border-border rounded-lg p-8 md:p-12">
@@ -52,12 +60,10 @@ const Metrics = () => {
           </h4>
 
           <div className="grid md:grid-cols-4 gap-8 mb-12">
-            {detailedMetrics.map((metric, index) => (
-              <div key={index} className="text-center">
+            {detailedMetrics.map((metric, index) => <div key={index} className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">{metric.value}</div>
                 <div className="text-sm text-muted-foreground">{metric.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
 
           <div className="text-center max-w-4xl mx-auto space-y-6">
@@ -73,8 +79,6 @@ const Metrics = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Metrics;

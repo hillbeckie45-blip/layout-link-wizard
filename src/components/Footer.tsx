@@ -1,6 +1,5 @@
 const Footer = () => {
-  return (
-    <footer className="border-t border-border py-12 bg-card/50">
+  return <footer className="border-t border-border py-12 bg-card/50">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -34,10 +33,7 @@ const Footer = () => {
 
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>hello@dtcma.com</li>
-              <li>+1 (555) 123-4567</li>
-            </ul>
+            
           </div>
         </div>
 
@@ -51,8 +47,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
