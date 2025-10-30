@@ -38,7 +38,7 @@ const logos = [
 
 const LogoCloudSection = () => {
   return (
-    <div className="min-h-screen w-full place-content-center py-24">
+    <div className="w-full place-content-center py-12">
       <div
         aria-hidden="true"
         className={cn(

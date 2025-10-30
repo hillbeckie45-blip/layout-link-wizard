@@ -43,7 +43,7 @@ const Metrics = () => {
 
         <div className="grid md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => <div key={index} className="p-8 bg-card border border-border text-center hover:border-primary/50 transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)] rounded-lg">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2 break-words">
                 {stat.value}
               </div>
               <div className="text-sm text-muted-foreground mb-2">{stat.label}</div>

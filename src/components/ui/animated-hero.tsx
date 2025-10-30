@@ -50,8 +50,10 @@ function AnimatedHero() {
           </div>
           <div className="flex flex-row gap-3">
             
-            <Button size="lg" className="gap-4 text-base">
-              Sign up here <MoveRight className="w-4 h-4" />
+            <Button size="lg" className="gap-4 text-base" asChild>
+              <a href="#contact">
+                Sign up here <MoveRight className="w-4 h-4" />
+              </a>
             </Button>
           </div>
         </div>
