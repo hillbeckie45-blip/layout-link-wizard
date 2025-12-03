@@ -7,12 +7,8 @@ const SuccessStories = () => {
         <div className="text-center mb-16">
           <h2 className="text-sm font-medium text-primary mb-4">Success Stories</h2>
           <h3 className="text-4xl md:text-6xl font-bold mb-4">
-            Real Results, Real Brands
+            Real Results, <span className="text-primary">Real Brands</span>
           </h3>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
-            From startup launches to enterprise expansions - here's how we've helped brands 
-            dominate their markets and leave competitors wondering what hit them.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
