@@ -1,4 +1,4 @@
-import { BarChart3, Target, TrendingUp, Rocket } from "lucide-react";
+import { Target, Rocket, BarChart3 } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const AnimatedMetricCard = ({ icon: Icon, value, suffix = "", label, color }: any) => {
@@ -6,8 +6,6 @@ const AnimatedMetricCard = ({ icon: Icon, value, suffix = "", label, color }: an
   const { count, elementRef } = useCountUp(numericValue, 2000, value.includes('.') ? 2 : 0);
   
   const formatValue = (val: number) => {
-    if (value.includes('B')) return `$${val.toFixed(2)}B+`;
-    if (value.includes('M')) return `$${Math.round(val)}M`;
     if (value.includes('%')) return `${val.toFixed(2)}%`;
     if (value.includes(',')) return `${Math.round(val).toLocaleString()}%`;
     return `${val.toFixed(2)}${suffix}`;
@@ -48,10 +46,6 @@ const getDescription = (label: string) => {
   switch (label) {
     case "Success Rate":
       return "Experience The Power Of Effective Digital Marketing With A Remarkable 94.42% Success Rate. Our proven methodologies and data-driven approach ensure consistent performance across all campaigns.";
-    case "Generated Revenue":
-      return "Witness The Impact Of Our Marketing Success As We Close In On $2B In Sales Generated Through Our Marketing Efforts. Our clients have seen unprecedented growth and market expansion.";
-    case "Ad Spend Managed":
-      return "Unprecedented Growth With Our Proven Digital Strategies, Driving Spend To Quickly Surpass our $300M 5 Year Goal. Every dollar is optimized for maximum performance.";
     case "Average ROAS":
       return "Our Agency Average Return On Ad Spend Works Out To 2100% - meaning for every $1 spent, our clients see $21 in return. Industry-leading performance that speaks for itself.";
     default:
@@ -64,9 +58,6 @@ const DetailMetricRow = ({ label, value }: { label: string; value: string }) => 
   const { count, elementRef } = useCountUp(numericValue, 2500, value.includes('.') ? 1 : 0);
   
   const formatValue = (val: number) => {
-    if (value.includes('B')) return `$${val.toFixed(1)}B+`;
-    if (value.includes('M')) return `$${Math.round(val)}M+`;
-    if (value.includes('K')) return `$${Math.round(val)}K`;
     if (value.includes('%')) return `${val.toFixed(1)}%`;
     return val.toFixed(1);
   };
@@ -82,8 +73,6 @@ const DetailMetricRow = ({ label, value }: { label: string; value: string }) => 
 const Metrics = () => {
   const mainMetrics = [
     { icon: Target, value: "94.42%", label: "Success Rate", color: "from-blue-500 to-cyan-500" },
-    { icon: TrendingUp, value: "1.928B", label: "Generated Revenue", color: "from-green-500 to-emerald-500" },
-    { icon: BarChart3, value: "295M", label: "Ad Spend Managed", color: "from-purple-500 to-pink-500" },
     { icon: Rocket, value: "2,100%", label: "Average ROAS", color: "from-pink-500 to-rose-500" }
   ];
 
@@ -94,21 +83,7 @@ const Metrics = () => {
     { label: "ROI Positive Rate", value: "96.1%" }
   ];
 
-  const centerColumnMetrics = [
-    { label: "E-commerce Sales", value: "1.2B+" },
-    { label: "Lead Generation Value", value: "458M+" },
-    { label: "Brand Awareness Lift", value: "270M+" },
-    { label: "Average Deal Size", value: "142K" }
-  ];
-
-  const rightColumn1Metrics = [
-    { label: "Google Ads", value: "145M" },
-    { label: "Meta Advertising", value: "89M" },
-    { label: "LinkedIn Ads", value: "34M" },
-    { label: "Other Platforms", value: "27M" }
-  ];
-
-  const rightColumn2Metrics = [
+  const rightColumnMetrics = [
     { label: "E-commerce ROAS", value: "2,850%" },
     { label: "Lead Gen ROAS", value: "1,650%" },
     { label: "Brand Awareness", value: "1,850%" },
@@ -130,15 +105,15 @@ const Metrics = () => {
           </h2>
         </div>
 
-        {/* Main 4 Metric Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {/* Main 2 Metric Cards */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
           {mainMetrics.map((metric, index) => (
             <AnimatedMetricCard key={index} {...metric} />
           ))}
         </div>
 
         {/* Detailed Metrics Section */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div className="bg-card/50 backdrop-blur border border-border rounded-xl p-6">
             <h4 className="text-lg font-bold mb-4 text-foreground">Campaign Performance</h4>
             <div className="space-y-1">
@@ -149,27 +124,9 @@ const Metrics = () => {
           </div>
 
           <div className="bg-card/50 backdrop-blur border border-border rounded-xl p-6">
-            <h4 className="text-lg font-bold mb-4 text-foreground">Revenue Breakdown</h4>
-            <div className="space-y-1">
-              {centerColumnMetrics.map((metric, i) => (
-                <DetailMetricRow key={i} {...metric} />
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-card/50 backdrop-blur border border-border rounded-xl p-6">
-            <h4 className="text-lg font-bold mb-4 text-foreground">Platform Spend</h4>
-            <div className="space-y-1">
-              {rightColumn1Metrics.map((metric, i) => (
-                <DetailMetricRow key={i} {...metric} />
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-card/50 backdrop-blur border border-border rounded-xl p-6">
             <h4 className="text-lg font-bold mb-4 text-foreground">Category ROAS</h4>
             <div className="space-y-1">
-              {rightColumn2Metrics.map((metric, i) => (
+              {rightColumnMetrics.map((metric, i) => (
                 <DetailMetricRow key={i} {...metric} />
               ))}
             </div>
@@ -179,4 +136,5 @@ const Metrics = () => {
     </section>
   );
 };
+
 export default Metrics;

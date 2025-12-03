@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,9 @@ const ContactForm = () => {
     email: "",
     phone: "",
     company: "",
+    monthlyRevenue: "",
+    yearlyRevenue: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -29,21 +34,45 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from("leads").insert({
+        first_name: formData.firstName,
+        last_name: formData.lastName || null,
+        email: formData.email,
+        phone: formData.phone || null,
+        company: formData.company,
+        monthly_revenue: formData.monthlyRevenue || null,
+        yearly_revenue: formData.yearlyRevenue || null,
+        message: formData.message || null,
+      });
+
+      if (error) throw error;
+
       toast({
         title: "Success!",
         description: "We'll get back to you soon.",
       });
+      
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
         company: "",
+        monthlyRevenue: "",
+        yearlyRevenue: "",
+        message: "",
       });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -139,6 +168,47 @@ const ContactForm = () => {
               required
               className="bg-background border-border text-foreground"
               placeholder="Your Company"
+            />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="monthlyRevenue" className="text-foreground">
+                Monthly Revenue
+              </Label>
+              <Input
+                id="monthlyRevenue"
+                value={formData.monthlyRevenue}
+                onChange={(e) => setFormData({ ...formData, monthlyRevenue: e.target.value })}
+                className="bg-background border-border text-foreground"
+                placeholder="$50,000"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="yearlyRevenue" className="text-foreground">
+                Yearly Revenue
+              </Label>
+              <Input
+                id="yearlyRevenue"
+                value={formData.yearlyRevenue}
+                onChange={(e) => setFormData({ ...formData, yearlyRevenue: e.target.value })}
+                className="bg-background border-border text-foreground"
+                placeholder="$600,000"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="message" className="text-foreground">
+              How can we help?
+            </Label>
+            <Textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="bg-background border-border text-foreground min-h-[120px]"
+              placeholder="Tell us about your business goals and how we can help you scale..."
             />
           </div>
 

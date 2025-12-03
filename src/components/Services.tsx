@@ -65,7 +65,7 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
             We Don't Just Run Ads,<br />
-            We Dominate Feeds
+            <span className="text-primary">We Dominate Feeds</span>
           </h2>
         </div>
 

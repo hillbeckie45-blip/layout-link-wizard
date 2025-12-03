@@ -1,14 +1,21 @@
+import { MapPin } from "lucide-react";
+
 const Footer = () => {
-  return <footer className="border-t border-border py-12 bg-card/50">
+  return (
+    <footer className="border-t border-border py-12 bg-card/50">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="text-2xl font-bold mb-4 text-foreground">
               Ascend Agency
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-4">
               Next-Gen Marketing Agency delivering real results for real brands.
             </p>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>Scottsdale, Arizona</span>
+            </div>
           </div>
 
           <div>
@@ -22,18 +29,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Company</h4>
+            <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#about" className="hover:text-foreground transition-colors">About</a></li>
-              <li><a href="#team" className="hover:text-foreground transition-colors">Team</a></li>
-              <li><a href="#testimonials" className="hover:text-foreground transition-colors">Testimonials</a></li>
-              <li><a href="#blog" className="hover:text-foreground transition-colors">Blog</a></li>
+              <li><a href="#testimonials" className="hover:text-foreground transition-colors">Success Stories</a></li>
+              <li><a href="#contact" className="hover:text-foreground transition-colors">Get in Touch</a></li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold mb-4">Contact</h4>
-            
           </div>
         </div>
 
@@ -47,6 +47,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
